@@ -1,7 +1,8 @@
 import React from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { View, Text, FlatList } from 'react-native';
+import { View, Text, FlatList, TouchableHighlight } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+
 const availableZipItems = [
     { place: 'Hatyai', code: '90110' },
     { place: 'Trang', code: '92000' },
@@ -11,10 +12,12 @@ const availableZipItems = [
 ]
 
 const ZipItem = ({ place, code, navigation }) => (
+    <TouchableHighlight onPress={() => navigation.navigate('Weather', { zipCode: code })}>
     <View>
         <Text>{place}</Text>
         <Text>{code}</Text>
     </View>
+    </TouchableHighlight>
 )
 
 const _keyExtractor = item => item.code
